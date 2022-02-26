@@ -1,9 +1,14 @@
-import React from 'react';
-import Button from '@mui/material/Button';
-const App = () => {
+import "./App.css";
+import Nav from "./components/Nav";
+import Login from "./Pages/Login";
+import Main from "./components/Main";
+import { Routes, Route } from "react-router-dom";
+function App() {
   return (
-    <div>
-      <Button variant="contained">This is a nice button</Button>
+    <div className="App">
+      <Nav />
+      <Main />
+      <Login />
     </div>
   );
 }
