@@ -11,11 +11,9 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-// testing
 import { Link as RouterLink } from 'react-router-dom';
 
 const pages = ['Red', 'Blue', 'Green'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -41,7 +39,7 @@ const ResponsiveAppBar = () => {
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
 					<Typography
-						variant="h6"
+						variant="h2"
 						noWrap
 						component="div"
 						sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
@@ -79,7 +77,8 @@ const ResponsiveAppBar = () => {
 							}}
 						>
 							{pages.map((page) => (
-								<MenuItem key={page} onClick={handleCloseNavMenu}>
+								<MenuItem
+									key={page} onClick={handleCloseNavMenu}>
 									<Typography textAlign="center">{page}</Typography>
 								</MenuItem>
 							))}
@@ -94,20 +93,36 @@ const ResponsiveAppBar = () => {
 						LOGO
 					</Typography>
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-						{pages.map((page) => (
-							<Button
-								key={page}
-								onClick={handleCloseNavMenu}
-								sx={{ my: 2, color: 'white', display: 'block' }}
-							>
-								{page}
-							</Button>
-						))}
+						<Button
+							component={RouterLink} to='/'
+							key='home'
+							onClick={handleCloseNavMenu}
+							sx={{ my: 2, color: 'white', display: 'block' }}
+						>
+							Home
+						</Button>
+						<Button
+							component={RouterLink} to='signup'
+							key='signup'
+							onClick={handleCloseNavMenu}
+							sx={{ my: 2, color: 'white', display: 'block' }}
+						>
+							Sign up
+						</Button>
+						<Button
+							component={RouterLink} to='login'
+							key='login'
+							onClick={handleCloseNavMenu}
+							sx={{ my: 2, color: 'white', display: 'block' }}
+						>
+							Login
+						</Button>
 					</Box>
 
 					<Box sx={{ flexGrow: 0 }}>
 						<Tooltip title="Open settings">
-							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+							<IconButton
+								onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 								<Avatar alt="" src="/static/images/avatar/2.jpg" />
 							</IconButton>
 						</Tooltip>
@@ -127,11 +142,18 @@ const ResponsiveAppBar = () => {
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}
 						>
-							{settings.map((setting) => (
-								<MenuItem key={setting} onClick={handleCloseUserMenu}>
-									<Typography textAlign="center">{setting}</Typography>
-								</MenuItem>
-							))}
+							<MenuItem key='Profile' onClick={handleCloseUserMenu}>
+								<Typography textAlign="center">Profile</Typography>
+							</MenuItem>
+							<MenuItem key='Account' onClick={handleCloseUserMenu}>
+								<Typography textAlign="center">Account</Typography>
+							</MenuItem>
+							<MenuItem key='Dashboard' onClick={handleCloseUserMenu}>
+								<Typography textAlign="center">Dashboard</Typography>
+							</MenuItem>
+							<MenuItem key='Logout' onClick={handleCloseUserMenu}>
+								<Typography textAlign="center">Logout</Typography>
+							</MenuItem>
 						</Menu>
 					</Box>
 				</Toolbar>
