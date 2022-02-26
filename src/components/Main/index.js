@@ -10,7 +10,7 @@ export default function MediaCard() {
   return (
     <div className="spoon-card">
       <Card
-        sx={{ maxWidth: 345 }}
+        sx={{ maxWidth: 345, }}
         grid
         spacing={100}
         direction="column"
