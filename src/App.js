@@ -6,9 +6,11 @@ import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 import { Routes, Route } from 'react-router-dom';
 
-function App() {
+import React from 'react';
+
+const App = () => {
 	return (
-		<div className="App">
+		<div>
 			<Nav2 />
 			<Routes>
 				<Route path="/" element={<Home />} />
@@ -18,6 +20,6 @@ function App() {
 			<Nav />
 		</div>
 	);
-}
+};
 
 export default App;
