@@ -13,7 +13,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link as RouterLink  } from 'react-router-dom';
+
 
 function Copyright(props) {
 	return (
@@ -45,12 +46,13 @@ export default function SignIn({ setUser }) {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		const data = new FormData(event.currentTarget);
+		// const data = new FormData(event.currentTarget);
 		setUser(username);
 		// eslint-disable-next-line no-console
 		console.log({
-			email: data.get('email'),
-			password: data.get('password'),
+			// username: data.get('username'),
+			// password: data.get('password'),
+			username,
 		});
 	};
 
@@ -82,10 +84,10 @@ export default function SignIn({ setUser }) {
 							margin="normal"
 							required
 							fullWidth
-							id="email"
-							label="Email Address"
-							name="email"
-							autoComplete="email"
+							id="username"
+							label="Username"
+							name="username"
+							autoComplete="username"
 							autoFocus
 							value={username}
 							onChange={handleChange}
@@ -119,7 +121,7 @@ export default function SignIn({ setUser }) {
 								</Link>
 							</Grid>
 							<Grid item>
-								<Link href="/signup" variant="body2">
+								<Link variant="body2" component={RouterLink} to='/signup'>
 									"Don't have an account? Sign Up"
 								</Link>
 							</Grid>
