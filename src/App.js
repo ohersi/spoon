@@ -5,10 +5,11 @@ import Login from "./pages/Login";
 import Main from "./components/Main";
 import { Routes, Route } from "react-router-dom";
 import { sizing } from '@mui/system'
-function App() {
+
+const App = () => {
   return (
     <div className="App">
-      <Nav2 />
+       <Nav2 />
       <Main />
       <Login />
       <Nav />
@@ -17,3 +18,4 @@ function App() {
 }
 
 export default App;
+
