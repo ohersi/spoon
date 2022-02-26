@@ -1,23 +1,24 @@
 import './App.css';
-import Nav from './components/Nav';
-import Nav2 from './components/Nav2';
+import BottomNav from './components/BottomNav';
+import TopNav from './components/TopNav';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 import { Routes, Route } from 'react-router-dom';
+
 
 import React from 'react';
 
 const App = () => {
 	return (
 		<div>
-			<Nav2 />
+			<TopNav />
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<SignUp />} />
 			</Routes>
-			<Nav />
+			<BottomNav />
 		</div>
 	);
 };
