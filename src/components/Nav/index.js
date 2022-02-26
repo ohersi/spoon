@@ -24,8 +24,4 @@ export default function SimpleBottomNavigation() {
       </BottomNavigation>
     </Box>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1dfa3a33ba3792efe66b24cbedd44b05376775bf
