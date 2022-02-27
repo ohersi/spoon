@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -28,16 +30,21 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+export default function SignIn({ setUser }) {
+	const [username, setUsername] = useState('');
+	const navigate = useNavigate();
+
+	const handleChange = (e) => {
+		setUsername(e.target.value);
+	};
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		setUser(username);
+	};
+  // console.log({
+  //   username: username
+  // })
 
   return (
     <ThemeProvider theme={theme}>
@@ -62,11 +69,13 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
+              id="username"
+              label="Username"
+              name="username"
               autoComplete="email"
               autoFocus
+              value={username}
+							onChange={handleChange}
             />
             <TextField
               margin="normal"
@@ -97,8 +106,8 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link variant="body2" component={RouterLink} to='/signup'>
+                    Don't have an account? Sign Up
                 </Link>
               </Grid>
             </Grid>

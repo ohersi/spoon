@@ -13,8 +13,6 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link as RouterLink } from 'react-router-dom';
 
-const pages = ['Red', 'Blue', 'Green'];
-
 const ResponsiveAppBar = () => {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -76,12 +74,27 @@ const ResponsiveAppBar = () => {
 								display: { xs: 'block', md: 'none' },
 							}}
 						>
-							{pages.map((page) => (
+							{/* {pages.map((page) => (
 								<MenuItem
 									key={page} onClick={handleCloseNavMenu}>
 									<Typography textAlign="center">{page}</Typography>
 								</MenuItem>
-							))}
+							))} */}
+							<MenuItem
+								component={RouterLink} to='/'
+								key='home' onClick={handleCloseNavMenu}>
+								<Typography textAlign="center">Home</Typography>
+							</MenuItem>
+							<MenuItem
+								component={RouterLink} to='signup'
+								key='signup' onClick={handleCloseNavMenu}>
+								<Typography textAlign="center">Sign Up</Typography>
+							</MenuItem>
+							<MenuItem
+								component={RouterLink} to='login'
+								key='login' onClick={handleCloseNavMenu}>
+								<Typography textAlign="center">Login</Typography>
+							</MenuItem>
 						</Menu>
 					</Box>
 					<Typography
