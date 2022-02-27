@@ -1,86 +1,53 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
-import { useState } from 'react';
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 
-function Copyright(props) {
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
-
-
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Copyright } from "../components";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
 const theme = createTheme();
 
 export default function SignUp() {
+  const [user, setUser] = useState({});
+  const [username, setUsername] = useState("");
+  const [first_name, setFirstName] = useState("");
+  const [country, setCountry] = useState("");
+  const [password, setPassword] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
-
-  const [user, setUser] = useState({})
-
-  const [username,setUsername] = useState("");
-  const [first_name,setFirstName] = useState("");
-  const [country,setCountry] = useState("");
-  const [password,setPassword] = useState("");
-
-
-  // const [realUser, setRealUser] = useState('');
-  // const [firstname, setFirstName2] = useState('');
-  // const [lastname, setLastName2] = useState('');
-  // const [countrie, setCountries] = useState('');
-  // const [cuisines, setCuisines] = useState('');
   const navigate = useNavigate();
-
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser({
-      ...user,
-      [name]:  value
-    });
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if ( username && first_name && country && password ){
-      
+    if (username && first_name && country && password) {
       setUser({
         username: username,
         first_name: first_name,
         country: country,
         password: password,
-      })
-      console.log("new user",user);
+      });
+      setRedirect(true);
     }
-    console.log("new user",username,first_name,country,password);
-
-    navigate('/')
   };
-// console.log("This is user inside login:", user);  
-// console.log("This is user.username:", user.username) ;
-// console.log("This is user.first_name:", user.first_name);
-// console.log("This is user.last_name:", user.last_name);
-// console.log("This is user.country:", user.country); 
+
+  useEffect(() => {
+    localStorage.setItem("myUser", JSON.stringify(user));
+    if (redirect) {
+      navigate("/");
+    }
+  }, [user]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -89,20 +56,25 @@ export default function SignUp() {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
                   name="firstName"
@@ -163,7 +135,9 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  control={
+                    <Checkbox value="allowExtraEmails" color="primary" />
+                  }
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>
@@ -178,14 +152,14 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link variant="body2" component={RouterLink} to='/login'>
+                <Link variant="body2" component={RouterLink} to="/login">
                   Already have an account? Sign in
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
+        <Copyright />
       </Container>
     </ThemeProvider>
   );
