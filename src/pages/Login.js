@@ -46,6 +46,7 @@ export default function SignIn({ setUser }) {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		setUser(username);
+    
 	};
   // console.log({
   //   username: username
@@ -101,6 +102,7 @@ export default function SignIn({ setUser }) {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={() =>navigate('/profile')}
             >
               Sign In
             </Button>

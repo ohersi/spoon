@@ -1,10 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { countries } from '../context/mockdata/MockUserData';
 
 const Profile = () => {
 	const [cuisineorg, setCuisineOrg] = useState(countries);
 	const [cuisinetry, setCuisineTry] = useState(countries);
+	const navigate = useNavigate()
 	console.log(cuisineorg);
 
 	const handleSelected = (id) => {
@@ -46,7 +48,7 @@ const Profile = () => {
 					);
 				})}
 			</div>
-            <button type='submit'> Submit </button>
+            <button type='submit' onClick={()=>navigate('/feed')}> Submit </button>
 		</div>
 	);
 };
