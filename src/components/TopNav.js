@@ -155,7 +155,10 @@ const ResponsiveAppBar = () => {
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}
 						>
-							<MenuItem key='Profile' onClick={handleCloseUserMenu}>
+							<MenuItem
+								key='Profile'
+								onClick={handleCloseUserMenu}
+								component={RouterLink} to='/profile'>
 								<Typography textAlign="center">Profile</Typography>
 							</MenuItem>
 							<MenuItem key='Account' onClick={handleCloseUserMenu}>
